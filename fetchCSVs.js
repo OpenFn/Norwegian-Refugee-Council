@@ -1,11 +1,29 @@
-// fetch the CSVs using SFTP
-fetch();
+getCSV(
+  '/DataExport/PMISPMFexport.csv',
+  'latin1',
+  {
+    quote: 'off',
+    delimiter: ';',
+  }
+);
 
-// parse and maniuplate them into a nice array
-alterState();
+getCSV(
+  '/DataExport/PMISTXexport.csv',
+  'utf8',
+  {
+    quote: 'off',
+    delimiter: ';',
+  }
+);
 
-// send each item to be loaded to Salesforce
+alterState((state) => {
+  // TODO: map the financials onto the projects...
+  return state;
+})
+
 each(
-  'item[*]',
-  post('openfn.org/inbox/blah...')
+  'state.projects[*]',
+  post('secret-inbox-url', {
+    body: data
+  });
 );
