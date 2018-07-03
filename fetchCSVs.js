@@ -9,7 +9,12 @@ getCSV(
       type: 'startsWith',
       key: 'field1',
       value: 'JO',
-    }
+    },
+    colParser:{
+      "column13": "number",
+      "column14": "number",
+  		"column17": "omit",
+  	},
   }
 );
 
@@ -30,7 +35,11 @@ getCSV(
       type: 'startsWith',
       key: 'field1',
       value: 'JO',
-    }
+    },
+    colParser:{
+  		"column8": "number",
+  		"column9": "number",
+  	},
   }
 );
 
