@@ -11,9 +11,13 @@ getCSV(
       value: 'JO',
     },
     colParser:{
-      "column13": "number",
-      "column14": "number",
-  		"column17": "omit",
+      "field11": "number",
+      "field12": "number",
+      "field13": "number",
+      "field14": "number",
+      "field15": "number",
+      "field16": "number",
+  		"field17": "omit",
   	},
   }
 );
@@ -37,8 +41,10 @@ getCSV(
       value: 'JO',
     },
     colParser:{
-  		"column8": "number",
-  		"column9": "number",
+  		"field8": "number",
+  		"field9": "number",
+      "field10": "number",
+      "field11": "number",
   	},
   }
 );
