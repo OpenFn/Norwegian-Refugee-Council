@@ -1,11 +1,19 @@
 upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
   // NOTE: Delete the following line to use default record type and stop inserts
-  relationship('RecordType', 'name', 'Project'),
+  relationship('RecordType', 'name', '4 - Project'),
   field('Name', dataValue('field1')), // Project Code
   field('Agresso_Unique_ID__c', dataValue('field1')), // Project Code
   field('Title__c', dataValue('field2')), // Name
-  field('Expenditure_Eligibility_Start_Date__c', dataValue('field3')), // Date From
-  field('Expenditure_Eligibility_End_Date__c', dataValue('field4')), // Completed
+  field('Expenditure_Eligibility_Start_Date__c', state => {
+    const dateArray = state.data.field3.split('/'); // Date From
+    const dateString = dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
+    return new Date(dateString).toISOString();
+  }),
+  field('Expenditure_Eligibility_End_Date__c', state => {
+    const dateArray = state.data.field4.split('/'); // Completed
+    const dateString = dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
+    return new Date(dateString).toISOString();
+  }),
   field('Donor_Currency__c', dataValue('field8')), // Currency
   field('Country_Code__c', dataValue('field9')), // Kostsed
   field('Agresso_Project_Cycle__c', dataValue('field10')), // Projeccycle

@@ -36,7 +36,6 @@ getCSV(
     delimiter: ';',
     noheader: true,
     filter: {
-      type: 'startsWith',
       key: 'field1',
       value: 'JO',
     },
