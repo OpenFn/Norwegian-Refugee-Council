@@ -1,5 +1,5 @@
 upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
-  relationship('RecordType', 'name', 'something'),
+  relationship('RecordType', 'name', 'Project'),
   field('Name', dataValue('field1')),
   field('Agresso_Unique_ID__c', dataValue('field1')),
   field('Title__c', dataValue('field2')),
