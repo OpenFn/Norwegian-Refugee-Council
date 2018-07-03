@@ -1,0 +1,48 @@
+{
+  "field1": "JOFM1618",
+  "field2": "Protection of legal rights of Syrian refugees and vulnerable members of the Jordanian host community",
+  "field3": "11/01/2016",
+  "field4": "04/30/2018",
+  "field5": "JOFM1618",
+  "field6": "",
+  "field7": "777777777777777",
+  "field8": "USD",
+  "field9": "JO",
+  "field10": "9",
+  "field11": "X%",
+  "field12": "0",
+  "field13": "88888888888888",
+  "field14": "99999999999999",
+  "field15": "0.111111111111",
+  "field16": "0.222222222222",
+  "field17": "",
+  "financials": [
+    {
+      "field1": "JOFM1618",
+      "field2": "201801",
+      "field3": "L2",
+      "field4": "4520",
+      "field5": "Internal seminars & trainings",
+      "field6": "45",
+      "field7": "Seminar and teaching costs",
+      "field8": "55555555555.55",
+      "field9": "66666666666.66",
+      "field10": "0.00",
+      "field11": "0.00",
+      "field12": ""
+    },
+    {
+      "field1": "JOFM1618",
+      "field2": "201801",
+      "field3": "A2",
+      "field4": "5095",
+      "field5": "Internal transfer salary expatriates",
+      "field6": "50",
+      "field7": "Salary Norwegian salary agreements",
+      "field8": "222222222222.22",
+      "field9": "333333333333.33",
+      "field10": "0.00",
+      "field11": "0.00",
+      "field12": ""
+    }
+}
