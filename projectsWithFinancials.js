@@ -27,24 +27,49 @@ upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
   field('NRC_Frame_Project_Code__c', dataValue('field17')) // Frame_Project
 ));
 
-each(
-  dataPath('financials[*]'),
-  upsert('Financial__c', 'Unique_ID__c', fields(
-    field('Unique_ID__c', (state) => {
-      const { data } = state;
-      // NOTE: Here we concatenate projectCode + period + activity + headAccount
-      return data.field1 + data.field2 + data.field3 + data.field4;
-    }),
-    relationship('Project__r', 'Agresso_Unique_ID__c', dataValue('field1')), // Project
-    field('Period__c', dataValue('field2')), // Period
-    field('Activity__c', dataValue('field3')), // Activity
-    field('Head_Account__c', dataValue('field4')), // Head account
-    field('Head_Account_Description__c', dataValue('field5')), // Head account(T)
-    field('Account_Number__c', dataValue('field6')), // Account group
-    field('Account_Description__c', dataValue('field7')), // Account group(T)
-    field('Amount_USD__c', dataValue('field8')), // Actual YTD USD
-    field('Amount_NOK__c', dataValue('field9')), // Actual YTD NOK
-    field('Budget_USD__c', dataValue('field10')), // Draft bud USD
-    field('Budget_NOK__c', dataValue('field11')) // Draft bud NOK
-  ))
+query(`SELECT Id FROM ampi__Project__c WHERE Agresso_Unique_ID__c = '${state.data.field1}'`);
+
+bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true },
+  state => state.data.financials.map(f => {
+    return {
+      'Unique_ID__c': f.field1.concat(f.field2, f.field3, f.field4),
+      'Project__c': state.references[0].records[0].Id, // the sfID from the above query
+      'Period__c': f.field2, // Period
+      'Activity__c': f.field3, // Activity
+      'Head_Account__c': f.field4, // Head account
+      'Head_Account_Description__c': f.field5, // Head account(T)
+      'Account_Number__c': f.field6, // Account group
+      'Account_Description__c': f.field7, // Account group(T)
+      'Amount_USD__c': f.field8, // Actual YTD USD
+      'Amount_NOK__c': f.field9, // Actual YTD NOK
+      'Budget_USD__c': f.field10, // Draft bud USD
+      'Budget_NOK__c': f.field11, // Draft bud NOK
+    }
+  })
 );
+
+// ===============================================================
+// NOTE: this is the standard way of doing it, but doesn't use the
+// bulk API and will lead to too many API calls.
+// ===============================================================
+// each(
+//   dataPath('financials[*]'),
+//   upsert('Financial__c', 'Unique_ID__c', fields(
+//     field('Unique_ID__c', (state) => {
+//       const { data } = state;
+//       // NOTE: Here we concatenate projectCode + period + activity + headAccount
+//       return data.field1 + data.field2 + data.field3 + data.field4;
+//     }),
+//     relationship('Project__r', 'Agresso_Unique_ID__c', dataValue('field1')), // Project
+//     field('Period__c', dataValue('field2')), // Period
+//     field('Activity__c', dataValue('field3')), // Activity
+//     field('Head_Account__c', dataValue('field4')), // Head account
+//     field('Head_Account_Description__c', dataValue('field5')), // Head account(T)
+//     field('Account_Number__c', dataValue('field6')), // Account group
+//     field('Account_Description__c', dataValue('field7')), // Account group(T)
+//     field('Amount_USD__c', dataValue('field8')), // Actual YTD USD
+//     field('Amount_NOK__c', dataValue('field9')), // Actual YTD NOK
+//     field('Budget_USD__c', dataValue('field10')), // Draft bud USD
+//     field('Budget_NOK__c', dataValue('field11')) // Draft bud NOK
+//   ))
+// );
