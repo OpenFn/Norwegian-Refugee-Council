@@ -17,7 +17,6 @@ getCSV(
       "field14": "number",
       "field15": "number",
       "field16": "number",
-  		"field17": "omit",
   	},
   }
 );
