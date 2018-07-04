@@ -1,6 +1,6 @@
 # Norwegian Refugee Council
-A Norwegian Refugee Council (https://www.nrc.no/) integration project using
-OpenFn.
+A [Norwegian Refugee Council](https://www.nrc.no/) integration project on
+[OpenFn](https://www.openfn.org).
 
 ## Objective
 To update PMIS in Salesforce with financial data from Agresso.
