@@ -31,10 +31,16 @@ query(`SELECT Id FROM ampi__Project__c WHERE Agresso_Unique_ID__c = '${state.dat
 
 bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true },
   state => state.data.financials.map(f => {
+
+    const year = f.field2.substring(0,4);
+    const month = f.field2.substring(4);
+    const dateString = year + '-' + month + '-31';
+    const sfDate = new Date(dateString).toISOString();
+
     return {
       'Unique_ID__c': f.field1.concat(f.field2, f.field3, f.field4),
       'Project__c': state.references[0].records[0].Id, // the sfID from the above query
-      'Period__c': f.field2, // Period
+      'Period__c': sfDate, // Period
       'Activity__c': f.field3, // Activity
       'Head_Account__c': f.field4, // Head account
       'Head_Account_Description__c': f.field5, // Head account(T)
