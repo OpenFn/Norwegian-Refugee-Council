@@ -53,29 +53,3 @@ bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true }
     }
   })
 );
-
-// ===============================================================
-// NOTE: this is the standard way of doing it, but doesn't use the
-// bulk API and will lead to too many API calls.
-// ===============================================================
-// each(
-//   dataPath('financials[*]'),
-//   upsert('Financial__c', 'Unique_ID__c', fields(
-//     field('Unique_ID__c', (state) => {
-//       const { data } = state;
-//       // NOTE: Here we concatenate projectCode + period + activity + headAccount
-//       return data.field1 + data.field2 + data.field3 + data.field4;
-//     }),
-//     relationship('Project__r', 'Agresso_Unique_ID__c', dataValue('field1')), // Project
-//     field('Period__c', dataValue('field2')), // Period
-//     field('Activity__c', dataValue('field3')), // Activity
-//     field('Head_Account__c', dataValue('field4')), // Head account
-//     field('Head_Account_Description__c', dataValue('field5')), // Head account(T)
-//     field('Account_Number__c', dataValue('field6')), // Account group
-//     field('Account_Description__c', dataValue('field7')), // Account group(T)
-//     field('Amount_USD__c', dataValue('field8')), // Actual YTD USD
-//     field('Amount_NOK__c', dataValue('field9')), // Actual YTD NOK
-//     field('Budget_USD__c', dataValue('field10')), // Draft bud USD
-//     field('Budget_NOK__c', dataValue('field11')) // Draft bud NOK
-//   ))
-// );
