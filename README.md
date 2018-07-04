@@ -35,3 +35,9 @@ breaks apart each project, storing it in an OpenFn inbox so that separate runs
 can be triggered to Salesforce, providing a cleaner error-handling experience
 and allowing for certain project updates to fail while other succeed on a given
 day.
+3. `projectsWithFinancials` executes once per project, based on `postToInbox`.
+It updates a project in Salesforce based on the external ID (`Agresso_Unique_ID__c`)
+and then queries Salesforce for that project's `sfId`. The `sfId` is required
+to populate the relationship field that links Financials to Projects when using
+the bulk API. The bulk request upserts multiple financials for that project with
+a single API call.
