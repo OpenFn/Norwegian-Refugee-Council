@@ -24,8 +24,8 @@ upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
   field('NOK_to_USD_Exchange__c', dataValue('field15')), // NOK to_USD
   field('Donor_Currency_to_NOK_Exchange__c', dataValue('field16')), // Ex_reate_donor_currency
   field('Agresso_Donor_ID__c', dataValue('field7')), // Customer_ID
-  field('NRC_Main_Project_Code__c', dataValue('field6')), // Main_Project
-  field('NRC_Frame_Project_Code__c', dataValue('field17')) // Frame_Project
+  field('NRC_Main_Project_Code__c', dataValue('field5')), // Main_Project
+  field('NRC_Frame_Project_Code__c', dataValue('field6')) // Frame_Project
 ));
 
 // NOTE: Here we find the Salesforce ID of the project, since the bulk API does
