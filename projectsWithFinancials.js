@@ -1,3 +1,4 @@
+// Update project
 upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
   // NOTE: Delete the following line to use default record type and stop inserts
   relationship('RecordType', 'name', '4 - Project'),
@@ -27,8 +28,11 @@ upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
   field('NRC_Frame_Project_Code__c', dataValue('field17')) // Frame_Project
 ));
 
+// NOTE: Here we find the Salesforce ID of the project, since the bulk API does
+// not allow matching on external IDs in jsForce.
 query(`SELECT Id FROM ampi__Project__c WHERE Agresso_Unique_ID__c = '${state.data.field1}'`);
 
+// Add financial records via the bulk API.
 bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true },
   state => state.data.financials.map(f => {
 
