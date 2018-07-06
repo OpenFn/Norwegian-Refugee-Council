@@ -62,6 +62,6 @@ alterState(state => {
   });
 
   return {
-    data: mergedProjects
+    data: { projects: mergedProjects }
   };
 });
