@@ -10,5 +10,5 @@ each(
   post("https://www.openfn.org/inbox/a507d61b-7d3c-44a4-a637-56cc9eca504c", {
     body: state.data,
     headers: { "content-type": "json" },
-  });
+  })
 );
