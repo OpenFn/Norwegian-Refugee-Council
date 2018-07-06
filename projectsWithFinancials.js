@@ -4,7 +4,9 @@ upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
   relationship('RecordType', 'name', '4 - Project'),
   field('Name', dataValue('field1')), // Project Code
   field('Agresso_Unique_ID__c', dataValue('field1')), // Project Code
-  field('Title__c', dataValue('field2')), // Name
+  field('Title__c', state => {
+    return state.data.field2.substring(0,100); // Name, first 100 chars
+  }),
   field('Expenditure_Eligibility_Start_Date__c', state => {
     const dateArray = state.data.field3.split('/'); // Date From
     const dateString = dateArray[2] + '-' + dateArray[0] + '-' + dateArray[1];
