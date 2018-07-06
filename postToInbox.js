@@ -4,5 +4,3 @@ each(
   dataPath('data[*]'),
   post('...')
 );
-
-// Add some notes here, updated webhook.
