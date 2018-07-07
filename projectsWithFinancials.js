@@ -35,7 +35,7 @@ upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
 query(`SELECT Id FROM ampi__Project__c WHERE Agresso_Unique_ID__c = '${state.data.field1}'`);
 
 // Add financial records via the bulk API.
-bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true },
+bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true, allowNoOp: true },
   state => state.data.financials.map(f => {
 
     const year = f.field2.substring(0,4);
