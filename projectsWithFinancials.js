@@ -44,7 +44,7 @@ bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true, 
     const sfDate = new Date(dateString).toISOString();
 
     return {
-      'Unique_ID__c': f.field1.concat(f.field2, f.field3, f.field4),
+      'Unique_ID__c': f.field1.concat(f.field2, f.field3, f.field4, f.field7),
       'Project__c': state.references[0].records[0].Id, // the sfID from the above query
       'Period__c': sfDate, // Period
       'Activity__c': f.field3, // Activity
