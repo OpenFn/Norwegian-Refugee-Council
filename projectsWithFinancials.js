@@ -40,8 +40,7 @@ bulk('Financial__c', 'upsert', { extIdField: 'Unique_ID__c', failOnError: true, 
 
     const year = f.field2.substring(0,4);
     const month = f.field2.substring(4);
-    const dateString = year + '-' + month + '-01';
-    const sfDate = new Date(dateString).toISOString();
+    const sfDate = new Date(year, month, 0).toISOString();
 
     return {
       'Unique_ID__c': f.field1.concat(f.field2, f.field3, f.field4, f.field7),
