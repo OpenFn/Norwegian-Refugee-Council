@@ -7,11 +7,6 @@ getCSV(
     quote: 'off',
     delimiter: ';',
     noheader: true,
-    filter: {
-      type: 'startsWith',
-      key: 'field1',
-      value: 'JO',
-    },
     colParser:{
       "field11": "number",
       "field12": "number",
@@ -24,7 +19,9 @@ getCSV(
 );
 
 alterState(state => {
-  state.projects = state.data;
+  state.projects = state.data.filter(p => (
+    p.field1.startsWith('JO') || p.field1.startsWith('NO')
+  ));
   state.data = {};
   return state;
 });
@@ -36,10 +33,6 @@ getCSV(
     quote: 'off',
     delimiter: ';',
     noheader: true,
-    filter: {
-      key: 'field1',
-      value: 'JO',
-    },
     colParser:{
   		"field8": "number",
   		"field9": "number",
@@ -50,7 +43,10 @@ getCSV(
 );
 
 alterState(state => {
-  const preparedFinancials = _.groupBy(state.data, 'field1');
+  const filteredFinancials = state.data.filter(f => (
+    f.field1.startsWith('JO') || f.field1.startsWith('NO')
+  ));
+  const preparedFinancials = _.groupBy(filteredFinancials, 'field1');
 
   const mergedProjects = state.projects.map((p) => {
     if (preparedFinancials[p.field1] != null) {
