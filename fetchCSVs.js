@@ -44,7 +44,7 @@ getCSV(
 
 alterState(state => {
   const filteredFinancials = state.data.filter(f => (
-    f.field1.startsWith('JO') || f.field1.startsWith('NO')
+    [DJ, ER, ET, KE, SO, SS, TZ, UG, UG, CO, NG, NO].indexOf(f.field1.substring(0,2)) === 0
   ));
   const preparedFinancials = _.groupBy(filteredFinancials, 'field1');
 
