@@ -19,8 +19,22 @@ getCSV(
 );
 
 alterState(state => {
+  state.selectedCountries = [
+    'CO',
+    'DJ',
+    'ER',
+    'ET',
+    'KE',
+    'NG',
+    'NO',
+    'SO',
+    'SS',
+    'TZ',
+    'UG',
+  ];
+
   state.projects = state.data.filter(p => (
-    p.field1.startsWith('JO') || p.field1.startsWith('NO')
+    state.selectedCountries.some(x => (p.field1.startsWith(x)))
   ));
   state.data = {};
   return state;
@@ -44,7 +58,7 @@ getCSV(
 
 alterState(state => {
   const filteredFinancials = state.data.filter(f => (
-    f.field1.startsWith('JO') || f.field1.startsWith('NO')
+    state.selectedCountries.some(x => (f.field1.startsWith(x)))
   ));
   const preparedFinancials = _.groupBy(filteredFinancials, 'field1');
 
