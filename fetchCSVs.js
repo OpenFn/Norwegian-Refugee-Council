@@ -31,7 +31,7 @@ alterState(state => {
     // 'NO',
     // 'SO',
     // 'SS',
-    // 'TZ',
+    'TZ',
     'UG',
   ];
 
