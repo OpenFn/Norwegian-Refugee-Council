@@ -22,15 +22,15 @@ alterState(state => {
   // NOTE: Choose countries to include here.
   // WARNING: The longer this list becomes, the longer the execution will take.
   state.selectedCountries = [
-    // 'CO',
-    // 'DJ',
-    // 'ER',
-    // 'ET',
-    // 'KE',
-    // 'NG',
-    // 'NO',
-    // 'SO',
-    // 'SS',
+    'CO',
+    'DJ',
+    'ER',
+    'ET',
+    'KE',
+    'NG',
+    'NO',
+    'SO',
+    'SS',
     'TZ',
     'UG',
   ];
