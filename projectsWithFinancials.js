@@ -1,7 +1,5 @@
 // Update project
 upsert('ampi__Project__c', 'Agresso_Unique_ID__c', fields(
-  // NOTE: Delete the following line to use default record type and stop inserts
-  relationship('RecordType', 'name', '4 - Project'),
   field('Name', dataValue('field1')), // Project Code
   field('Agresso_Unique_ID__c', dataValue('field1')), // Project Code
   field('Title__c', state => {
