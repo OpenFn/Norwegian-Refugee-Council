@@ -23,16 +23,26 @@ alterState(state => {
   // WARNING: The longer this list becomes, the longer the execution will take.
   state.selectedCountries = [
     'CO',
+    'CD',
+    'CF',
+    'CM',
     'DJ',
     'ER',
     'ET',
+    'JO',
     'KE',
+    'LB',
+    'LY',
+    'ML',
     'NG',
     'NO',
+    'PS',
     'SO',
     'SS',
     'TZ',
     'UG',
+    'UA',
+    'YE',
   ];
 
   state.projects = state.data.filter(p => (
