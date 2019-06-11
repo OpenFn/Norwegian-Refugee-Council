@@ -8,6 +8,7 @@ getCSV(
     delimiter: ';',
     noheader: true,
     colParser:{
+      "field10": "number",
       "field11": "number",
       "field12": "number",
       "field13": "number",
