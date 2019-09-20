@@ -2,11 +2,10 @@
 // post it to the OpenFn inbox for individual error handling. Now linked to
 // both A-L and M-Z fetch jobs.
 alterState(state => {
-  const interval = 1500;
+  const interval = 1000;
   var promise = Promise.resolve();
   state.data.projects.forEach(p => {
     promise = promise.then(() => {
-      console.log('doing the thing with one financial.');
       const financials = p.financials;
       console.log(
         `Isolating ${p.field2}: project ${p.field1} with ${financials.length} financials.`
