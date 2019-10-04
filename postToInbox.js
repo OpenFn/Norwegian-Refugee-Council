@@ -1,31 +1,34 @@
 // NOTE: For every prepared projectWithFinancials item in the projects array,
-// post it to the OpenFn inbox for individual error handling. Now linked to
-// both A-L and M-Z fetch jobs.
-each(
-  dataPath("projects[*]"),
-  alterState(state => {
-    const financials = state.data.financials;
-    console.log(
-      `Isolating ${state.data.field2}: project ${state.data.field1} with ${
-        financials.length
-      } financials.`
-    );
+// NRC posts it to their OpenFn inbox so that each item can fail or succeed
+// individually.
+alterState(state => {
+  const interval = 1000;
+  var promise = Promise.resolve();
+  state.data.projects.forEach(p => {
+    promise = promise.then(() => {
+      const f = p.financials;
+      console.log(
+        `Isolating ${p.field2}: project ${p.field1} with ${f.length} financials.`
+      );
 
-    var i,
-      j,
-      temparray,
-      chunk = 1000;
+      var i,
+        j,
+        temparray,
+        chunk = 1000;
 
-    for (i = 0, j = financials.length; i < j; i += chunk) {
-      temparray = financials.slice(i, i + chunk);
-      state.data.financials = temparray;
-      post("", {
-        body: state => {
-          return state.data;
-        }
-      })(state);
-    }
-
-    return state;
-  })
-);
+      for (i = 0, j = f.length; i < j; i += chunk) {
+        temparray = f.slice(i, i + chunk);
+        state.data.f = temparray;
+        post('', {
+          body: state => {
+            return state.data;
+          },
+        })(state);
+        return new Promise(resolve => {
+          setTimeout(resolve, interval);
+        });
+      }
+    });
+  });
+  return state;
+});
